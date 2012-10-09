@@ -315,9 +315,9 @@ int intrinsic_op(char *name)
 {
 #if TX86
     //printf("intrinsic_op(%s)\n", name);
+#if DMDV1
     static const char *std_namearray[] =
     {
-#if DMDV1
         "4math3cosFeZe",
         "4math3sinFeZe",
         "4math4fabsFeZe",
@@ -343,11 +343,9 @@ int intrinsic_op(char *name)
         "9intrinsic5bswapFkZk",
         "9intrinsic5outplFkkZk",
         "9intrinsic5outpwFktZt",
-#endif
     };
     static const char *std_namearray64[] =
     {
-#if DMDV1
         "4math3cosFeZe",
         "4math3sinFeZe",
         "4math4fabsFeZe",
@@ -373,7 +371,6 @@ int intrinsic_op(char *name)
         "9intrinsic5bswapFkZk",
         "9intrinsic5outplFkkZk",
         "9intrinsic5outpwFktZt",
-#endif
     };
     static unsigned char std_ioptab[] =
     {
@@ -389,8 +386,7 @@ int intrinsic_op(char *name)
         OPrndtol,
         OPyl2xp1,
     };
-
-#ifdef DMDV2
+#elif DMDV2
     static const char *core_namearray[] =
     {
         "4math3cosFNaNbNfeZe",
@@ -484,6 +480,7 @@ int intrinsic_op(char *name)
 #endif
 
 #ifdef DEBUG
+#if DMDV1
     assert(sizeof(std_namearray) == sizeof(std_namearray64));
     assert(sizeof(std_namearray) / sizeof(char *) == sizeof(std_ioptab));
     for (size_t i = 0; i < sizeof(std_namearray) / sizeof(char *) - 1; i++)
@@ -503,7 +500,7 @@ int intrinsic_op(char *name)
             assert(0);
         }
     }
-#ifdef DMDV2
+#elif DMDV2
     assert(sizeof(core_namearray) == sizeof(core_namearray64));
     assert(sizeof(core_namearray) / sizeof(char *) == sizeof(core_ioptab));
     for (size_t i = 0; i < sizeof(core_namearray) / sizeof(char *) - 1; i++)
@@ -527,6 +524,7 @@ int intrinsic_op(char *name)
 #endif
     size_t length = strlen(name);
 
+#if DMDV1
     if (length > 10 &&
         (name[7] == 'm' || name[7] == 'i') &&
         !memcmp(name, "_D3std", 6))
@@ -534,7 +532,7 @@ int intrinsic_op(char *name)
         int i = binary(name + 6, I64 ? std_namearray64 : std_namearray, sizeof(std_namearray) / sizeof(char *));
         return (i == -1) ? i : std_ioptab[i];
     }
-#ifdef DMDV2
+#elif DMDV2
     if (length > 12 &&
         (name[8] == 'm' || name[8] == 'b' || name[8] == 's') &&
         !memcmp(name, "_D4core", 7))
