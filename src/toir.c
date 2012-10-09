@@ -343,21 +343,6 @@ int intrinsic_op(char *name)
         "9intrinsic5bswapFkZk",
         "9intrinsic5outplFkkZk",
         "9intrinsic5outpwFktZt",
-#elif DMDV2
-        /* The names are mangled differently because of the pure and
-         * nothrow attributes.
-         */
-        "4math3cosFNaNbNfeZe",
-        "4math3sinFNaNbNfeZe",
-        "4math4fabsFNaNbNfeZe",
-        "4math4rintFNaNbNfeZe",
-        "4math4sqrtFNaNbNfdZd",
-        "4math4sqrtFNaNbNfeZe",
-        "4math4sqrtFNaNbNffZf",
-        "4math4yl2xFNaNbNfeeZe",
-        "4math5ldexpFNaNbNfeiZe",
-        "4math6rndtolFNaNbNfeZl",
-        "4math6yl2xp1FNaNbNfeeZe",
 #endif
     };
     static const char *std_namearray64[] =
@@ -388,21 +373,6 @@ int intrinsic_op(char *name)
         "9intrinsic5bswapFkZk",
         "9intrinsic5outplFkkZk",
         "9intrinsic5outpwFktZt",
-#elif DMDV2
-        /* The names are mangled differently because of the pure and
-         * nothrow attributes.
-         */
-        "4math3cosFNaNbNfeZe",
-        "4math3sinFNaNbNfeZe",
-        "4math4fabsFNaNbNfeZe",
-        "4math4rintFNaNbNfeZe",
-        "4math4sqrtFNaNbNfdZd",
-        "4math4sqrtFNaNbNfeZe",
-        "4math4sqrtFNaNbNffZf",
-        "4math4yl2xFNaNbNfeeZe",
-        "4math5ldexpFNaNbNfeiZe",
-        "4math6rndtolFNaNbNfeZl",
-        "4math6yl2xp1FNaNbNfeeZe",
 #endif
     };
     static unsigned char std_ioptab[] =
