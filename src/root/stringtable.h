@@ -28,7 +28,7 @@ struct StringValue
 private:
     size_t length;
 
-#ifndef IN_GCC
+#if _MSC_VER
     // Disable warning about nonstandard extension
     #pragma warning (disable : 4200)
 #endif
