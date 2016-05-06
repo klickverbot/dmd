@@ -6056,6 +6056,8 @@ public:
 
         gagged = (global.gag > 0);
 
+        immutable oldDeferredDim = Module.deferred.dim;
+
         semanticRun = PASSsemantic;
 
         static if (LOG)
@@ -6334,7 +6336,7 @@ public:
          */
         {
             bool found_deferred_ad = false;
-            for (size_t i = 0; i < Module.deferred.dim; i++)
+            for (size_t i = oldDeferredDim; i < Module.deferred.dim; i++)
             {
                 Dsymbol sd = Module.deferred[i];
                 AggregateDeclaration ad = sd.isAggregateDeclaration();
@@ -6350,7 +6352,7 @@ public:
                     }
                 }
             }
-            if (found_deferred_ad || Module.deferred.dim)
+            if (found_deferred_ad)
                 goto Laftersemantic;
         }
 
